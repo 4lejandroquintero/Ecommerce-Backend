@@ -11,27 +11,30 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@AllArgsConstructor
 public class OrderCrudRepositoryImpl implements IOrderRepository {
-
     private final IOrderMapper iOrderMapper;
     private final IOrderCrudRepository iOrderCrudRepository;
+
+    public OrderCrudRepositoryImpl(IOrderMapper iOrderMapper, IOrderCrudRepository iOrderCrudRepository) {
+        this.iOrderMapper = iOrderMapper;
+        this.iOrderCrudRepository = iOrderCrudRepository;
+    }
 
     @Override
     public Order save(Order order) {
         OrderEntity orderEntity = iOrderMapper.toOrderEntity(order);
 
         orderEntity.getOrderProducts().forEach(
-            orderProductoEntity ->  orderProductoEntity.setOrderEntity(orderEntity)
+                orderProductEntity -> orderProductEntity.setOrderEntity(orderEntity)
         );
 
-        return iOrderMapper.toOrder( iOrderCrudRepository.save(orderEntity));
+        return iOrderMapper.toOrder(iOrderCrudRepository.save(orderEntity));
     }
 
     @Override
     public Order findById(Integer id) {
-        return iOrderMapper.toOrder( iOrderCrudRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Orden con id " + id + " No existe en la BD")
+        return iOrderMapper.toOrder(iOrderCrudRepository.findById(id).orElseThrow(
+                ()-> new RuntimeException("Orden con id: "+ id+" no encontrada")
         ));
     }
 
@@ -50,9 +53,10 @@ public class OrderCrudRepositoryImpl implements IOrderRepository {
     @Override
     public void updateStateById(Integer id, String state) {
         if(state.equals(OrderState.CANCELLED)){
-            iOrderCrudRepository.updateStateById(id, OrderState.CANCELLED);
+            iOrderCrudRepository.updateStateById(id,OrderState.CANCELLED);
         }else{
-            iOrderCrudRepository.updateStateById(id, OrderState.CONFIRMED);
+            iOrderCrudRepository.updateStateById(id,OrderState.CONFIRMED);
         }
+
     }
 }

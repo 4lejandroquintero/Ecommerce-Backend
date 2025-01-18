@@ -14,14 +14,14 @@ public interface CategoryMapper {
                     @Mapping(source = "id", target = "id"),
                     @Mapping(source = "name", target = "name"),
                     @Mapping(source = "dateCreated", target = "dateCreated"),
-                    @Mapping(source = "dateUpdated", target = "dateUpdated")
+                    @Mapping(source = "dateUpdated", target = "dateUpdated"),
             }
     )
 
-    Category toCategory(CategoryEntity categoryEntity); //() es la fuente
+    Category toCategory(CategoryEntity categoryEntity);
     Iterable<Category> toCategoryList( Iterable<CategoryEntity> categoryEntities);
 
     @InheritInverseConfiguration
-        //configuracion inversa
-    CategoryEntity toCategoryEntity(Category category);
+    CategoryEntity toCategoryEntity(Category category );
 }
+

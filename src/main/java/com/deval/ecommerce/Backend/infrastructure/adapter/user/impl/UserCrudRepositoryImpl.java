@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserCrudRepositoryImpl implements IUserRepository {
-
     private final IUserCrudRepository iUserCrudRepository;
     private final UserMapper userMapper;
 
@@ -24,11 +23,13 @@ public class UserCrudRepositoryImpl implements IUserRepository {
 
     @Override
     public User findByEmail(String email) {
-        return null;
+        return userMapper.toUser(  iUserCrudRepository.findByEmail(email).orElseThrow(
+                () -> new RuntimeException("User with email: " +email+ " not found")
+        )  );
     }
 
     @Override
     public User findById(Integer id) {
-        return userMapper.toUser( iUserCrudRepository.findById(id).get() );
+        return  userMapper.toUser(iUserCrudRepository.findById(id).get());
     }
 }

@@ -1,8 +1,8 @@
 package com.deval.ecommerce.Backend.infrastructure.entity.order;
 
 import com.deval.ecommerce.Backend.domain.model.order.OrderState;
-import com.deval.ecommerce.Backend.infrastructure.entity.orderProduct.OrderProductoEntity;
 import com.deval.ecommerce.Backend.infrastructure.entity.user.UserEntity;
+import com.deval.ecommerce.Backend.infrastructure.entity.orderProduct.OrderProductEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -14,7 +14,6 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 public class OrderEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,10 +21,8 @@ public class OrderEntity {
     private LocalDateTime dateCreated;
     @Enumerated(value = EnumType.STRING)
     private OrderState orderState;
-
     @ManyToOne
     private UserEntity userEntity;
-
-    @OneToMany(mappedBy = "orderEntity", cascade = CascadeType.PERSIST) //creo una orden me inserta esos items
-    private List<OrderProductoEntity> orderProducts;
+    @OneToMany(mappedBy = "orderEntity", cascade = CascadeType.PERSIST)
+    private List<OrderProductEntity> orderProducts;
 }

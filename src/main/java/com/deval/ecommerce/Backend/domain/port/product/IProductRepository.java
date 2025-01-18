@@ -8,3 +8,4 @@ public interface IProductRepository {
     Product findById(Integer id);
     void deleteById(Integer id);
 }
+

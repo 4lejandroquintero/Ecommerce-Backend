@@ -17,11 +17,9 @@ public class Order {
     private Integer userId;
 
     public Order() {
-        orderProducts= new ArrayList<>();
+        orderProducts = new ArrayList<>();
     }
-
     public BigDecimal getTotalOrderPrice(){
-        return this.orderProducts.stream().map( orderProduct -> orderProduct.getTotalItem() ).
-                reduce(BigDecimal.ZERO, BigDecimal::add);
+        return this.orderProducts.stream().map( ordenProduct -> ordenProduct.getTotalItem() ).reduce(BigDecimal.ZERO,BigDecimal::add);
     }
 }

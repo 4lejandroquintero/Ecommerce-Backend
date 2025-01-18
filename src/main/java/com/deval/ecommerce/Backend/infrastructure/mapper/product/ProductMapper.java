@@ -22,13 +22,14 @@ public interface ProductMapper {
                     @Mapping(source = "dateCreated", target = "dateCreated"),
                     @Mapping(source = "dateUpdated", target = "dateUpdated"),
                     @Mapping(source = "userEntity.id", target = "userId"),
-                    @Mapping(source = "categoryEntity.id", target = "categoryId")
+                    @Mapping(source = "categoryEntity.id", target = "categoryId"  )
+
             }
     )
-    Product toProduct(ProductEntity productEntity); //() es la fuente
-    Iterable<Product> toProductList( Iterable<ProductEntity> productEntities);
+
+    Product toProduct(ProductEntity productEntity);
+    Iterable<Product>  toProductList( Iterable<ProductEntity> productEntities);
 
     @InheritInverseConfiguration
-        //configuracion inversa
     ProductEntity toProductEntity(Product product);
 }

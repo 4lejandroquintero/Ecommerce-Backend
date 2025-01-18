@@ -14,4 +14,6 @@ public class Category {
     private String name;
     private LocalDateTime dateCreated;
     private LocalDateTime dateUpdated;
+
 }
+

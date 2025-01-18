@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 public class CategoryEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

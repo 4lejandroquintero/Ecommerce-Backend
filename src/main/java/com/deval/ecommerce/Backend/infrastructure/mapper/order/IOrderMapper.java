@@ -2,13 +2,13 @@ package com.deval.ecommerce.Backend.infrastructure.mapper.order;
 
 import com.deval.ecommerce.Backend.domain.model.order.Order;
 import com.deval.ecommerce.Backend.infrastructure.entity.order.OrderEntity;
-import com.deval.ecommerce.Backend.infrastructure.mapper.orderProduct.IOrderProductoMapper;
+import com.deval.ecommerce.Backend.infrastructure.mapper.orderProduct.IOrderProductMapper;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-@Mapper(componentModel = "spring", uses = {IOrderProductoMapper.class})
+@Mapper(componentModel = "spring", uses = {IOrderProductMapper.class})
 public interface IOrderMapper {
     @Mappings(
             {
@@ -16,7 +16,7 @@ public interface IOrderMapper {
                     @Mapping(source = "dateCreated", target = "dateCreated"),
                     @Mapping(source = "orderProducts", target = "orderProducts"),
                     @Mapping(source = "orderState", target = "orderState"),
-                    @Mapping(source = "userEntity.id", target = "userId"),
+                    @Mapping(source = "userEntity.id", target = "userId")
             }
     )
 
@@ -25,4 +25,5 @@ public interface IOrderMapper {
 
     @InheritInverseConfiguration
     OrderEntity toOrderEntity(Order order);
+
 }

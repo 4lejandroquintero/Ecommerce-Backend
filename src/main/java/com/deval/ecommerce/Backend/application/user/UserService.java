@@ -10,15 +10,16 @@ public class UserService {
         this.iUserRepository = iUserRepository;
     }
 
-    public User save (User user) {
-        return iUserRepository.save(user);
+    public User save (User user){
+        return  this.iUserRepository.save(user);
     }
 
-    public User findById (Integer id) {
-        return iUserRepository.findById(id);
+    public User findById (Integer id){
+        return this.iUserRepository.findById(id);
     }
 
-    public User findByEmail (String email) {
+    public User findByEmail(String email){
         return iUserRepository.findByEmail(email);
     }
+
 }

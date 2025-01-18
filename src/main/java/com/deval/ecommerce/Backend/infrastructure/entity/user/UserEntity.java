@@ -17,12 +17,11 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String username;
     private String firstName;
     private String lastName;
-    private String email;
     @Column(unique = true)
+    private String email;
     private String address;
     private String cellphone;
     private String password;
@@ -32,5 +31,4 @@ public class UserEntity {
     private LocalDateTime dateCreated;
     @UpdateTimestamp
     private LocalDateTime dateUpdated;
-
 }

@@ -1,5 +1,6 @@
 package com.deval.ecommerce.Backend.domain.model.product;
 
+import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,6 @@ public class Product {
     private BigDecimal price;
     private LocalDateTime dateCreated;
     private LocalDateTime dateUpdated;
-    private Integer userId;
+    private  Integer userId;
     private Integer categoryId;
 }

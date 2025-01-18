@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/admin/categories")
 @Slf4j //imprimir sin systemoutprint
+@CrossOrigin("http://localhost:4200")
 public class CategoryController {
-
     private final CategoryService categoryService;
 
     public CategoryController(CategoryService categoryService) {
@@ -19,13 +19,13 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> save(@RequestBody Category category){
+    public ResponseEntity<Category> save(@RequestBody Category category ){
         return new ResponseEntity<>(categoryService.save(category), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<Iterable<Category>> findAll(){
-        return ResponseEntity.ok( categoryService.findAll());
+    public ResponseEntity<Iterable<Category>>findAll(){
+        return  ResponseEntity.ok(categoryService.findAll()) ;
     }
 
     @GetMapping("/{id}")
@@ -34,8 +34,10 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteById(@PathVariable Integer id) {
+    public ResponseEntity<HttpStatus> deleteById(@PathVariable Integer id){
         categoryService.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
+
 }
